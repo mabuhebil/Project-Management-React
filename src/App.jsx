@@ -21,9 +21,22 @@ function App() {
     })
   }
 
+  function handelAddProject (projectDtaa){
+    setProjectsState(prev => {
+      const newProject ={
+        ...projectDtaa, 
+        id:Math.random()
+      }
+      return{
+        ...prev,
+        projects: [...prev.projects , newProject]
+      }
+    })
+  }
+
   let content;
   if(projectsState.selectedProjectId===null){
-    content = <NewProject/>;
+    content = <NewProject  onAdd ={handelAddProject}/>;
   } else if(projectsState.selectedProjectId===undefined){
     content = <NoProjectSelected onStartAddProject ={handelStartAddProject}/>
   }
