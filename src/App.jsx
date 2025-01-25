@@ -34,6 +34,8 @@ function App() {
     })
   }
 
+  console.log(projectsState)
+
   let content;
   if(projectsState.selectedProjectId===null){
     content = <NewProject  onAdd ={handelAddProject}/>;

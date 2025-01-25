@@ -29,9 +29,9 @@ export default function NewProject({onAdd}){
                 >Save</button></li>
             </menu>
             <div>
-                <Input ref={title}  label='Title'/>
-                <Input ref={description}  label='Description' textarea/>
-                <Input ref={dueDate} label='Due Data' />
+                <Input type='text' ref={title}  label='Title'/>
+                <Input  ref={description}  label='Description' textarea/>
+                <Input type='Date' ref={dueDate} label='Due Data' />
             </div>
         </div>
     )
