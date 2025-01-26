@@ -2,17 +2,31 @@
 import Input from "./Input"
 
 import { useRef } from "react"
+ import Modal from './Modal'
 
 export default function NewProject({onAdd}){
 
     const title =useRef();
     const description =useRef();
     const dueDate =useRef();
+    const modal =useRef();
 
     function handelSave(){
         const enteredTitle = title.current.value;
         const enteredDescription = description.current.value;
         const enteredDuDate= dueDate.current.value;
+
+        if(
+            enteredTitle.trim()===''||
+            enteredDescription.trim()===''||
+            enteredDuDate.trim()===''
+        ){
+           modal.current.open();
+           return; 
+        }
+
+
+
         onAdd({
             title:enteredTitle,
             description:enteredDescription,
@@ -20,6 +34,12 @@ export default function NewProject({onAdd}){
         })
     }
     return(
+        <>
+        <Modal ref={modal} caption='Close'>
+            <h2>Invalid Input</h2>
+            <p>Oops... looks like you forgot to enter value</p>
+            <p>please make sure you provude avalid value for every Innput</p>
+        </Modal>
         <div className="w-[35rem] mt-16">
             <menu className="flex items-center justify-end gap-4 my-4">
                 <li ><button className="text-stone-800 hover:text-stone-950">Cancel</button></li>
@@ -34,5 +54,6 @@ export default function NewProject({onAdd}){
                 <Input type='Date' ref={dueDate} label='Due Data' />
             </div>
         </div>
+        </>
     )
 }

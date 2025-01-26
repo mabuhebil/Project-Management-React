@@ -5,6 +5,7 @@ import NoProjectSelected from "./components/NoProjectSelected";
 import { useState } from "react";
 
 
+
 function App() {
 
   const [projectsState , setProjectsState ] = useState({
@@ -29,6 +30,7 @@ function App() {
       }
       return{
         ...prev,
+        selectedProjectId:undefined,
         projects: [...prev.projects , newProject]
       }
     })
@@ -44,7 +46,9 @@ function App() {
   }
   return (
     <main className="h-screen my-8 flex gap-8">
-      <ProjectsSidebar onStartAddProject ={handelStartAddProject} />
+      <ProjectsSidebar 
+      onStartAddProject ={handelStartAddProject} 
+      projects={projectsState.projects}/>
       {content}
 
   
