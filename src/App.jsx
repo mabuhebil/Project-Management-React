@@ -22,6 +22,15 @@ function App() {
     })
   }
 
+  function handelCancelAddProject(){
+    setProjectsState(prev => {
+      return {
+        ...prev ,
+        selectedProjectId:undefined
+      }
+    }) 
+  }
+
   function handelAddProject (projectDtaa){
     setProjectsState(prev => {
       const newProject ={
@@ -36,11 +45,11 @@ function App() {
     })
   }
 
-  console.log(projectsState)
+  
 
   let content;
   if(projectsState.selectedProjectId===null){
-    content = <NewProject  onAdd ={handelAddProject}/>;
+    content = <NewProject  onAdd ={handelAddProject} onCancel ={handelCancelAddProject}/>;
   } else if(projectsState.selectedProjectId===undefined){
     content = <NoProjectSelected onStartAddProject ={handelStartAddProject}/>
   }
