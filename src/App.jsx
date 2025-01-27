@@ -3,6 +3,7 @@ import ProjectsSidebar from "./components/ProjectsSidebar";
 import NewProject from "./components/NewProject";
 import NoProjectSelected from "./components/NoProjectSelected";
 import { useState } from "react";
+import SelectedProject from "./components/SelectedProject";
 
 
 
@@ -56,7 +57,9 @@ function App() {
 
   
 
-  let content;
+  const selectedProject = projectsState.projects.find(project => project.id === projectsState.selectedProjectId)
+
+  let content = <SelectedProject project={selectedProject}/>
   if(projectsState.selectedProjectId===null){
     content = <NewProject  onAdd ={handelAddProject} onCancel ={handelCancelAddProject}/>;
   } else if(projectsState.selectedProjectId===undefined){
@@ -67,7 +70,8 @@ function App() {
       <ProjectsSidebar 
       onStartAddProject ={handelStartAddProject} 
       projects={projectsState.projects}
-      handelSelectProject={handelSelectProject}/>
+      handelSelectProject={handelSelectProject}
+      selectedProjectId={projectsState.selectedProjectId}/>
 
       
       {content}
