@@ -22,6 +22,15 @@ function App() {
     })
   }
 
+  function handelSelectProject(id){
+    setProjectsState(prev => {
+      return {
+        ...prev ,
+        selectedProjectId:id
+      }
+    })
+  }
+
   function handelCancelAddProject(){
     setProjectsState(prev => {
       return {
@@ -57,7 +66,10 @@ function App() {
     <main className="h-screen my-8 flex gap-8">
       <ProjectsSidebar 
       onStartAddProject ={handelStartAddProject} 
-      projects={projectsState.projects}/>
+      projects={projectsState.projects}
+      handelSelectProject={handelSelectProject}/>
+
+      
       {content}
 
   
