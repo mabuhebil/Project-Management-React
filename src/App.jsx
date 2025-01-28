@@ -14,6 +14,8 @@ function App() {
     projects:[],
   })
 
+  const [deleteId , setDeleteId] = useState(null)
+
   function handelStartAddProject(){
     setProjectsState(prev => {
       return {
@@ -55,11 +57,31 @@ function App() {
     })
   }
 
+  function handelDelete(){
+    setProjectsState(prev => {
+      return {
+        ...prev ,
+        selectedProjectId:undefined,
+        projects: prev.projects.filter(project => {
+          project.id !== prev.selectedProjectId
+        })
+      }
+    }) 
+  }
+
+  function handelDeleteId(ID){
+    setDeleteId(ID)
+  }
   
 
   const selectedProject = projectsState.projects.find(project => project.id === projectsState.selectedProjectId)
 
-  let content = <SelectedProject project={selectedProject}/>
+  let content = <SelectedProject 
+  project={selectedProject} 
+  handelDelete={handelDelete}
+  
+  />
+
   if(projectsState.selectedProjectId===null){
     content = <NewProject  onAdd ={handelAddProject} onCancel ={handelCancelAddProject}/>;
   } else if(projectsState.selectedProjectId===undefined){
@@ -71,7 +93,8 @@ function App() {
       onStartAddProject ={handelStartAddProject} 
       projects={projectsState.projects}
       handelSelectProject={handelSelectProject}
-      selectedProjectId={projectsState.selectedProjectId}/>
+      selectedProjectId={projectsState.selectedProjectId}
+      handelDeleteId={handelDeleteId}/>
 
       
       {content}

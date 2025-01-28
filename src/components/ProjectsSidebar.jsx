@@ -5,7 +5,8 @@ export default function ProjectsSidebar({
     onStartAddProject ,
     projects,
     handelSelectProject,
-    selectedProjectId
+    selectedProjectId,
+    handelDeleteId
 }){
     return(
         <aside className=" w-1/3 px-8 py-16 bg-stone-900 text-stone-50 md:w-72 rounded-r-xl">
@@ -31,7 +32,12 @@ export default function ProjectsSidebar({
                     <li key={project.id}>
                         <button
                          className= {cssClass} 
-                         onClick={() =>handelSelectProject(project.id)}>{project.title}</button>
+                         onClick={() => {
+                            handelSelectProject(project.id);
+                            handelDeleteId(project.id);
+                          }}
+                          
+                         >{project.title}</button>
                     </li>
                 )
                 
