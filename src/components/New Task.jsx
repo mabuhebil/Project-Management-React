@@ -11,6 +11,9 @@ export default function NewTask({
         setEnteredTask(event.target.value)
     }
     function onClick(){
+        if(enteredTask.trim() ===''){
+            return;
+        }
         onAdd(enteredTask);
         setEnteredTask('')
     }

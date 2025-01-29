@@ -4,7 +4,8 @@ export default function SelectedProject({
     project,
     handelDelete,
     handelAddTask,
-    tasks
+    tasks,
+    handelDeleteTask
     }){
 
     const formattedDate = new Date(project.dueDate).toLocaleDateString('en-us' ,{
@@ -34,7 +35,11 @@ export default function SelectedProject({
                     {project.description}
                 </p>
             </header>
-            <Tasks onAdd={handelAddTask} tasks={tasks} />
+            <Tasks 
+            onAdd={handelAddTask} 
+            tasks={tasks} 
+            handelDeleteTask={handelDeleteTask}
+            />
         </div>
     )
 

@@ -2,7 +2,8 @@ import NewTask from "./New Task";
 
 export default function Tasks({
     onAdd,
-    tasks
+    tasks,
+    handelDeleteTask
 }){
     return(
         <section>
@@ -12,10 +13,10 @@ export default function Tasks({
             
             <NewTask onAdd={onAdd} />
 
-            {console.log(tasks)}
+         
             
             
-            {  tasks.length > 0 && <p className="text-stone-800 my-4">
+            {  tasks.length == 0 && <p className="text-stone-800 my-4">
                     this project does not have any tasks yet
                 </p>}
            
@@ -26,7 +27,10 @@ export default function Tasks({
             {tasks.map(task => 
                 <li key={task.id} className="flex justify-between my-4">
                 <span>{task.text}</span>
-                <button className="text-stone-700 hover:text-red-500">Clear</button>
+                <button 
+                onClick={() => handelDeleteTask(task.id)}
+                className="text-stone-700 hover:text-red-500"
+                >Clear</button>
                 </li>
                 
             

@@ -88,6 +88,15 @@ function App() {
       }
     })
   }
+
+  function handelDeleteTask(id){
+    setProjectsState(prev => {
+      return {
+        ...prev ,
+        tasks: prev.tasks.filter(task => task.id !==id)
+      }
+    }) 
+  }
   
 
   const selectedProject = projectsState.projects.find(project => project.id === projectsState.selectedProjectId)
@@ -97,6 +106,7 @@ function App() {
   handelDelete={handelDelete}
   handelAddTask={handelAddTask}
   tasks={projectsState.tasks}
+  handelDeleteTask ={handelDeleteTask}
   />
 
   if(projectsState.selectedProjectId===null){
