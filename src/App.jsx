@@ -76,7 +76,7 @@ function App() {
 
   function handelAddTask(text){
     setProjectsState( prev => {
-      const taskId = math.random()
+      const taskId = Math.random()
       const newTask = {
         text: text,
         projectId: prev.selectedProjectId,
@@ -96,6 +96,7 @@ function App() {
   project={selectedProject} 
   handelDelete={handelDelete}
   handelAddTask={handelAddTask}
+  tasks={projectsState.tasks}
   />
 
   if(projectsState.selectedProjectId===null){
